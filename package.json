@@ -1,0 +1,62 @@
+{
+  "name": "@quik-fe/async-retry",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/main.ts",
+  "main": "dist/main.umd.js",
+  "module": "dist/main.module.mjs",
+  "unpkg": "dist/main.umd.js",
+  "types": "./dist/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "require": "./dist/main.js",
+      "default": "./dist/main.modern.mjs"
+    },
+    "./src/*": "./src/*"
+  },
+  "keywords": [
+    "retry"
+  ],
+  "files": [
+    "src/**/*.ts",
+    "dist/**.js*",
+    "dist/**.mjs*",
+    "dist/**/*.ts"
+  ],
+  "scripts": {
+    "build-dts": "rollup -c rollup.dts.config.js",
+    "build-js": "microbundle --define process.env.NODE_ENV=production,PKG_VERSION=$npm_package_version",
+    "build": "pnpm build-js && pnpm build-dts",
+    "watch": "microbundle watch --define process.env.NODE_ENV=development,PKG_VERSION=$npm_package_version --compress false",
+    "dev": "pnpm watch",
+    "start": "pnpm build",
+    "prepack": "rm -rf dist && pnpm run build",
+    "test": "jest"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quik-fe/async-retry.git"
+  },
+  "author": "zhzluke96",
+  "bugs": {
+    "url": "https://github.com/quik-fe/async-retry/issues"
+  },
+  "homepage": "https://github.com/quik-fe/async-retry#readme",
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "dotenv": "^16.4.7",
+    "microbundle": "^0.15.1",
+    "node-fetch-with-proxy": "^0.1.6",
+    "rollup": "^4.28.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "tslib": "^2.8.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
